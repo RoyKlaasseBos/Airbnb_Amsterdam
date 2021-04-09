@@ -3,9 +3,8 @@ library(broom)
 library(dplyr)
 library(fastDummies)
 library(dummies)
-install.packages("ggfortiy")
 options(scipen=999)
-data <- read.csv("/Users/woutervanakkeren/Desktop/Airbnb_Amsterdam/data/data.csv")
+data <- read.csv("/data.csv")
 
 #create dummy for neighbourhood
 data.new <- dummy.data.frame(data, names= c("neighbourhood"), sep= "_")
