@@ -7,7 +7,8 @@ df_amsterdam <- read.csv("../../data/data.csv")
 library('fastDummies')
 
 #Creating directory /gen/analysis/
-dir.create("../../gen/analysis")
+dir.create("../../gen/")
+dir.create("../../gen/analysis/")
 
 # 1. Creating a trend variables
 # Aren't the trends variables already done? Because the months are already numbered 1, 2 etc.
@@ -23,8 +24,8 @@ lm_df_amsterdam <- lm(num_reviews~month + christmas_holiday + neighbourhood, dat
 
 #Creating the lineair model in Stargazer
 stargazer(lm_df_amsterdam,
-          title = "Figure 1: Lineair model Amsterdam",
+          title = "Figure 1: Regression AirBNB data Amsterdam",
           dep.var.caption = "Number of reviews",  
           notes.label = "Significance levels",  
           type="html",
-          out=" gen/analysis/regression.html")
+          out="../../gen/analysis/regression.html")
