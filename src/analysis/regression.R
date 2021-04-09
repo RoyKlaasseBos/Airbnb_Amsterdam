@@ -29,7 +29,7 @@ reg <- lm(frmla, df)
 summary(reg)
 
 # labels for in table
-labels <- paste(colnames(df[9:30]))
+labels <- paste(colnames(df[8:30]))
 labels <- gsub("_", " ", labels)
 labels <- substr(labels, 15, nchar(labels))
 labels <- labels[1:21]
