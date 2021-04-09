@@ -7,24 +7,21 @@ require(substr)
 # read in the csv
 df <- read.csv("../../data/data.csv")
 
-# add year factor (see trend)
-df$year_factor <- df$year - 2015
-
 # add dummies for neighborhoods
 df$neighbourhood <- gsub(" ", "", df$neighbourhood)
 df$neighbourhood <- gsub("-", "_", df$neighbourhood)
 df <- dummy_cols(df, select_columns = "neighbourhood")
 
-# add trend variable
-df$trend <- df$year_factor * 12 + df$month
-
 # add dummies for summer months
 df <- df %>%
   mutate(summer = ifelse(month == 6 | month == 7 | month == 8, 1, 0))
 
+# add months to end dataset
+df$months <- df$month
+
 # paste colnames
 frmla <- as.formula(paste(colnames(df)[5], 
-                    paste(colnames(df)[9:ncol(df)], sep = "", collapse = "+"), 
+                    paste(colnames(df)[8:ncol(df)], sep = "", collapse = "+"), 
                     sep = " ~ "))
 
 # regression
@@ -46,7 +43,7 @@ stargazer(reg,
           title = "Figure 1: Regression analysis",
           dep.var.caption = "Number of reviews",
           dep.var.labels = "",
-          covariate.labels = c(labels, "trend", "summer"),
+          covariate.labels = c(labels,  "summer", "months"),
           notes.label = "Significance level",
           type = "html",
           out= "../../gen/analysis/regression.html")
