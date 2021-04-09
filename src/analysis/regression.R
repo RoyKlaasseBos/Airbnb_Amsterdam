@@ -41,7 +41,7 @@ colnames(airbnb)[which(colnames(airbnb)=='neighbourhood_Noord-West')] <- 'neighb
 # set regression
 
 mdl_airbnb <-
-  glm(
+  lm(
     num_reviews ~ neighboorhood_Bijlmer_Centrum +
     neighbourhood_Bijlmer_Oost +
     neighbourhood_Bos_en_Lommer+
