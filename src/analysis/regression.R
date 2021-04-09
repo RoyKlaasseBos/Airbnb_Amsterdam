@@ -7,6 +7,8 @@ install.packages("fastDummies")
 library(fastDummies)
 library(tidyverse)
 library(dplyr)
+library(stargazer)
+
 
 #read the data in
 dff <- read.csv("data.csv", sep=",")
@@ -76,6 +78,19 @@ regression_airbnb <- lm(num_reviews ~month + BijlmerC +
                           , data=dff)
 
 summary(regression_airbnb)
+
+#also a stargazer table
+
+stargazer(regression_airbnb,
+          title = "Regression airbnb",
+          dep.var.caption = "regression outcome",  
+          dep.var.labels = "",  
+          covariate.labels = "",  
+          column.labels = c("Full model"),
+          notes.label = "Significance levels",  
+          type="html",
+          out="output.html"  
+          )
 
 
 
