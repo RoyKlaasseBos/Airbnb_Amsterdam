@@ -44,16 +44,13 @@ data <- data %>%
     neighbourhood_Centrum_West = `neighbourhood_Centrum-West`
   )
 
-#Make dummy variables for the summermonths
+#Make dummy variables for december
 data$trend <- as.integer(data$trend)
-data$summer <- 0
-data$summer[data$trend == 5] <- 1
-data$summer[data$trend == 6] <- 1
-data$summer[data$trend == 7] <- 1
-
+data$christmas <- 0
+data$christmas[data$trend == 12] <- 1
 
 #Make a regression
-regression_model <- lm(num_reviews ~ trend + summer + neighbourhood_Zuid+ 
+regression_model <- lm(num_reviews ~ trend + christmas + neighbourhood_Zuid+ 
                          neighbourhood_Westerpark + neighbourhood_Watergraafsmeer +
                          neighbourhood_Slotervaart + neighbourhood_Oud_Oost + 
                          neighbourhood_Oud_Noord + neighbourhood_Osdorp+ 
