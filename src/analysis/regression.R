@@ -4,7 +4,7 @@ library(dplyr)
 library(fastDummies)
 library(dummies)
 options(scipen=999)
-data <- read.csv("/data.csv")
+data <- read.csv("data.csv")
 
 #create dummy for neighbourhood
 data.new <- dummy.data.frame(data, names= c("neighbourhood"), sep= "_")
